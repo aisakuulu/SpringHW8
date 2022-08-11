@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="peaksoft.spring"/>
+    <context:property-placeholder location="application.properties"/>
+
+
+    <bean id="horseBean" class="peaksoft.spring.animals.Horse" init-method="animalPlus" destroy-method="animalMinus">
+        <property name="name" value="${horse.name}"/>
+        <property name="color" value="${horse.color}"/>
+        <property name="age" value="${horse.age}"/>
+    </bean>
+
+    <bean id="catBean" class="peaksoft.spring.animals.Cat" init-method="animalPlus" destroy-method="animalMinus">
+        <property name="name" value="${cat.name}"/>
+        <property name="color" value="${cat.color}"/>
+        <property name="age" value="${cat.age}"/>
+    </bean>
+
+    <bean id="musab" class="peaksoft.spring.people.Person">
+        <property name="name" value="${musab.name}"/>
+        <property name="age" value="${musab.age}"/>
+        <property name="animal" ref="horseBean"/>
+    </bean>
+
+    <bean id="umar" class="peaksoft.spring.people.Person">
+        <property name="name" value="${umar.name}"/>
+        <property name="age" value="${umar.age}"/>
+        <property name="animal" ref="catBean"/>
+    </bean>
+
+</beans>
